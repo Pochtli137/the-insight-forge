@@ -13,7 +13,6 @@ export default function FinishedScreen() {
   const runeSegments = useGameStore((s) => s.runeSegments);
 
   const title = getTitle();
-  const finalRealm = realms.find((r) => r.id === 5);
 
   const completeRuneCount = realms.filter((realm) => {
     const segments = runeSegments[realm.id];
@@ -97,12 +96,6 @@ export default function FinishedScreen() {
               ))}
             </div>
           </div>
-        )}
-
-        {finalRealm && (
-          <p className="mb-10 whitespace-pre-line font-serif italic text-forge-parchment/60">
-            {finalRealm.narrativeOutro}
-          </p>
         )}
 
         <button
