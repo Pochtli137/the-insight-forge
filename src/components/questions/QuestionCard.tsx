@@ -54,10 +54,6 @@ export default function QuestionCard() {
         setTimeout(() => setShowPoints(false), 1500);
       } else {
         play('wrong');
-        // Wrong answer: auto-advance to mini-game after 2 seconds
-        setTimeout(() => {
-          startMiniGame(question);
-        }, 2000);
       }
     },
     [question, answered, answerQuestion, streak, startMiniGame, play],
@@ -111,12 +107,19 @@ export default function QuestionCard() {
             {lastAnswerCorrect ? 'Correct!' : 'Not quite...'}
           </p>
           <p className="text-sm text-forge-muted">{question.explanation}</p>
-          {lastAnswerCorrect && (
+          {lastAnswerCorrect ? (
             <button
               onClick={() => nextQuestion()}
               className="mt-4 rounded border border-forge-gold bg-forge-gold/10 px-6 py-2 font-sans text-forge-gold transition-all hover:bg-forge-gold/20"
             >
               Next question →
+            </button>
+          ) : (
+            <button
+              onClick={() => startMiniGame(question)}
+              className="mt-4 rounded border border-forge-crimson bg-forge-crimson/10 px-6 py-2 font-sans text-forge-parchment transition-all hover:bg-forge-crimson/20"
+            >
+              Try the challenge →
             </button>
           )}
         </div>
