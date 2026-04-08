@@ -1,7 +1,6 @@
 import { useGameStore } from '../../stores/gameStore';
 import { realms } from '../../data/realms';
 import RuneDisplay from '../shared/RuneDisplay';
-import RealmDecoration from '../shared/RealmDecoration';
 
 interface GameShellProps {
   children: React.ReactNode;
@@ -52,17 +51,14 @@ export default function GameShell({ children }: GameShellProps) {
       </div>
 
       {/* Content */}
-      <div className="flex flex-1 flex-col items-center px-4 py-8 pb-[120px]">
+      <div className="flex flex-1 flex-col items-center px-4 py-8">
         {children}
       </div>
 
       {/* Group name */}
-      <div className="px-4 pb-[110px] text-right text-xs text-forge-muted">
+      <div className="px-4 pb-2 text-right text-xs text-forge-muted">
         {groupName}
       </div>
-
-      {/* Accumulating dark fantasy decorations */}
-      <RealmDecoration realm={currentRealm} />
     </div>
   );
 }
