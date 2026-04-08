@@ -7,7 +7,6 @@ export default function FinishedScreen() {
   const groupName = useGameStore((s) => s.groupName);
   const score = useGameStore((s) => s.score);
   const realmScores = useGameStore((s) => s.realmScores);
-  const resetGame = useGameStore((s) => s.resetGame);
   const getTitle = useGameStore((s) => s.getTitle);
   const unlockedAchievements = useGameStore((s) => s.unlockedAchievements);
   const runeSegments = useGameStore((s) => s.runeSegments);
@@ -107,12 +106,14 @@ export default function FinishedScreen() {
           <p className="text-forge-gold/80">Now go forge something real.</p>
         </div>
 
-        <button
-          onClick={resetGame}
-          className="rounded bg-forge-gold px-8 py-3 font-semibold text-forge-bg transition-all hover:shadow-[0_0_20px_rgba(212,168,67,0.4)]"
-        >
-          Play Again
-        </button>
+        <div className="rounded border border-forge-border bg-forge-card/60 p-6">
+          <p className="mb-2 text-xs font-semibold tracking-widest text-forge-muted uppercase">The next realm awaits</p>
+          <p className="mb-4 font-serif text-xl text-forge-gold">Storytelling</p>
+          <p className="font-serif italic text-forge-parchment/50">
+            You have the data. You have the insights. But without a story, they are just numbers on a screen.
+            The forge gave you sight. The next realm will give you voice.
+          </p>
+        </div>
       </div>
     </div>
   );
