@@ -11,7 +11,6 @@ export default function GameShell({ children }: GameShellProps) {
   const currentRealm = useGameStore((s) => s.currentRealm);
   const currentQuestionIndex = useGameStore((s) => s.currentQuestionIndex);
   const score = useGameStore((s) => s.score);
-  const streak = useGameStore((s) => s.streak);
   const groupName = useGameStore((s) => s.groupName);
   const getRealmQuestions = useGameStore((s) => s.getRealmQuestions);
   const getTitle = useGameStore((s) => s.getTitle);
@@ -33,12 +32,6 @@ export default function GameShell({ children }: GameShellProps) {
           </div>
         </div>
         <div className="flex items-center gap-4">
-          {streak >= 3 && (
-            <span className="animate-flicker text-sm">
-              <span className="mr-1">&#x1F525;</span>
-              {streak}
-            </span>
-          )}
           <span className="text-sm font-semibold text-forge-parchment">
             {score} pts
           </span>

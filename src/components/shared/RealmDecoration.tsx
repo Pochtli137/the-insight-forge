@@ -1,17 +1,10 @@
-import { useGameStore } from '../../stores/gameStore';
 import { realmDecorations } from '../../data/realmDecorations';
-import { questions } from '../../data/questions';
 
 interface Props {
   realm: number;
 }
 
 export default function RealmDecoration({ realm }: Props) {
-  const answers = useGameStore((s) => s.answers);
-
-  const realmQuestions = questions.filter((q) => q.realm === realm);
-  const answeredCount = realmQuestions.filter((q) => answers[q.id]).length;
-
   const decorations = realmDecorations[realm];
   if (!decorations) return null;
 
@@ -42,17 +35,15 @@ export default function RealmDecoration({ realm }: Props) {
           opacity="0.2"
         />
 
-        {decorations.map((deco, index) =>
-          index < answeredCount ? (
-            <g
-              key={index}
-              transform={`translate(${deco.x}, ${deco.y})`}
-              opacity={deco.opacity}
-            >
-              <path d={deco.path} fill={deco.fill} />
-            </g>
-          ) : null
-        )}
+        {decorations.map((deco, index) => (
+          <g
+            key={index}
+            transform={`translate(${deco.x}, ${deco.y})`}
+            opacity={deco.opacity}
+          >
+            <path d={deco.path} fill={deco.fill} />
+          </g>
+        ))}
       </svg>
     </div>
   );

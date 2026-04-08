@@ -5,7 +5,6 @@ import RuneDisplay from '../shared/RuneDisplay';
 export default function RealmComplete() {
   const currentRealm = useGameStore((s) => s.currentRealm);
   const score = useGameStore((s) => s.score);
-  const streak = useGameStore((s) => s.streak);
   const realmScores = useGameStore((s) => s.realmScores);
   const nextRealm = useGameStore((s) => s.nextRealm);
   const finishGame = useGameStore((s) => s.finishGame);
@@ -38,14 +37,6 @@ export default function RealmComplete() {
             <span className="text-forge-muted">Total score</span>
             <span className="text-xl font-bold text-forge-parchment">{score}</span>
           </div>
-          {streak >= 2 && (
-            <div className="flex items-center justify-between">
-              <span className="text-forge-muted">Current streak</span>
-              <span className="text-xl font-bold text-forge-gold">
-                &#x1F525; {streak}
-              </span>
-            </div>
-          )}
         </div>
 
         <p className="mb-10 font-serif italic text-forge-parchment/70">{realm.narrativeOutro}</p>
