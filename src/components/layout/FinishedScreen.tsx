@@ -98,6 +98,15 @@ export default function FinishedScreen() {
           </div>
         )}
 
+        <div className="mb-10 space-y-4 font-serif italic text-forge-parchment/60">
+          <p>You entered as designers who feared the numbers. You leave as analysts who wield them.</p>
+          <p>The tool never mattered. You did.</p>
+          <p>The data was never the enemy. Ignorance was.</p>
+          <p>Someone will ask you: how did you learn to do that?</p>
+          <p>And you will say: let me show you.</p>
+          <p className="text-forge-gold/80">Now go forge something real.</p>
+        </div>
+
         <button
           onClick={resetGame}
           className="rounded bg-forge-gold px-8 py-3 font-semibold text-forge-bg transition-all hover:shadow-[0_0_20px_rgba(212,168,67,0.4)]"

@@ -44,6 +44,6 @@ export const realms: Realm[] = [
     icon: "🔮",
     rune: "TRUST YOURSELF FIRST",
     narrativeIntro: `A powerful oracle offers to answer all your questions. It is faster than you. Sometimes better.\n\nBut the oracle has flaws that your master taught you to see. It praises your ideas even when they are weak. It fabricates evidence with a straight face. It suggests paths that replace your own thinking.\n\nThe training was harsh. The master showed no mercy. But every blow taught you something real.\n\nYour trial: know when to trust the oracle, and when to trust yourself.`,
-    narrativeOutro: "The oracle is a tool, not a truth. You learned to wield it without being wielded by it.\n\nYou entered as designers who feared the numbers. You leave as analysts who wield them.\n\nThe tool never mattered. You did.\n\nThe data was never the enemy. Ignorance was.\n\nSomeone will ask you: how did you learn to do that?\n\nAnd you will say: let me show you.\n\nNow go forge something real."
+    narrativeOutro: "The oracle is a tool, not a truth. You learned to wield it without being wielded by it.\n\nNow you know which questions to ask — and which answers to doubt."
   }
 ];
