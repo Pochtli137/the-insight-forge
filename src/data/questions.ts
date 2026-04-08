@@ -1189,7 +1189,7 @@ export const questions: Question[] = [
     options: [
       'AI cannot be customized',
       'Custom instructions slow down AI responses',
-      'Custom instructions can shape AI behavior and improve output',
+      'Custom instructions can shape AI behaviour',
       'All AI tools have identical default behavior',
     ],
     correctAnswer: 2,
