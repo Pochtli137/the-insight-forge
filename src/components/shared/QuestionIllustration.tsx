@@ -5,7 +5,7 @@ interface Props {
   questionIndex: number;
 }
 
-export default function QuestionIllustration({ realm, questionIndex }: Props) {
+export default function QuestionIllustration({ questionIndex }: Props) {
   const getRealmQuestions = useGameStore((s) => s.getRealmQuestions);
   const questions = getRealmQuestions();
   const question = questions[questionIndex];
