@@ -15,7 +15,7 @@ export default function MiniGameRouter() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-4">
       <div className="mx-auto w-full max-w-2xl">
-        <p className="mb-8 text-center font-serif text-lg text-forge-gold">
+        <p className="mb-8 text-center font-serif text-2xl text-forge-gold">
           Challenge: Learn the Answer
         </p>
 

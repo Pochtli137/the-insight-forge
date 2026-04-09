@@ -31,18 +31,18 @@ export default function MemoryFlash({ data, onComplete }: MemoryFlashProps) {
   if (phase === 'reading') {
     return (
       <div className="animate-fade-in-up text-center">
-        <p className="mb-6 font-serif text-lg text-forge-parchment">{data.explanation}</p>
+        <p className="mb-6 font-serif text-2xl text-forge-parchment">{data.explanation}</p>
         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border-2 border-forge-gold">
-          <span className="font-serif text-2xl font-bold text-forge-gold">{countdown}</span>
+          <span className="font-serif text-3xl font-bold text-forge-gold">{countdown}</span>
         </div>
-        <p className="mt-4 text-sm text-forge-muted">Memorize this. A question follows.</p>
+        <p className="mt-4 text-base text-forge-muted">Memorize this. A question follows.</p>
       </div>
     );
   }
 
   return (
     <div className="animate-fade-in-up text-center">
-      <h3 className="mb-6 font-serif text-xl text-forge-parchment">{data.verifyQuestion}</h3>
+      <h3 className="mb-6 font-serif text-2xl text-forge-parchment">{data.verifyQuestion}</h3>
       <div className="space-y-3">
         {data.verifyOptions.map((option, i) => {
           let classes =
@@ -56,7 +56,7 @@ export default function MemoryFlash({ data, onComplete }: MemoryFlashProps) {
           } else if (i === selected) {
             classes += 'border-forge-crimson bg-forge-crimson/20 text-forge-parchment animate-shake';
           } else {
-            classes += 'border-forge-border bg-forge-card text-forge-muted opacity-50';
+            classes += 'border-forge-border bg-forge-card text-forge-parchment/80';
           }
 
           return (

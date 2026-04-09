@@ -57,7 +57,7 @@ export default function ForgeTheAnswer({ data, onComplete }: ForgeTheAnswerProps
   return (
     <div className="animate-fade-in-up">
       {/* Template with blanks */}
-      <div className="mb-8 rounded border border-forge-border bg-forge-card p-6 font-serif text-lg leading-relaxed text-forge-parchment">
+      <div className="mb-8 rounded border border-forge-border bg-forge-card p-6 font-serif text-2xl leading-relaxed text-forge-parchment">
         {parts.map((part, i) => (
           <span key={i}>
             {part}
@@ -90,7 +90,7 @@ export default function ForgeTheAnswer({ data, onComplete }: ForgeTheAnswerProps
               key={i}
               onClick={() => handleWordClick(word)}
               disabled={isUsed || submitted}
-              className={`rounded border px-3 py-1.5 text-sm transition-all ${
+              className={`rounded border px-3 py-1.5 text-base transition-all ${
                 isUsed
                   ? 'border-forge-border bg-forge-card text-forge-muted opacity-30'
                   : 'border-forge-border bg-forge-card text-forge-parchment hover:border-forge-gold cursor-pointer'

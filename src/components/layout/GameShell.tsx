@@ -24,14 +24,14 @@ export default function GameShell({ children }: GameShellProps) {
       {/* Top bar */}
       <div className="flex items-center justify-between border-b border-forge-border px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="text-2xl">{realm?.icon}</span>
+          <span className="text-3xl">{realm?.icon}</span>
           <div>
-            <span className="font-serif text-lg text-forge-gold">{realm?.name}</span>
-            <p className="font-serif text-xs text-forge-gold-dim">{title}</p>
+            <span className="font-serif text-2xl text-forge-gold">{realm?.name}</span>
+            <p className="font-serif text-base text-forge-gold-dim">{title}</p>
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-sm font-semibold text-forge-parchment">
+          <span className="text-base font-semibold text-forge-parchment">
             {score} pts
           </span>
         </div>
@@ -56,7 +56,7 @@ export default function GameShell({ children }: GameShellProps) {
       </div>
 
       {/* Group name */}
-      <div className="px-4 pb-2 text-right text-xs text-forge-muted">
+      <div className="px-4 pb-2 text-right text-base text-forge-muted">
         {groupName}
       </div>
     </div>

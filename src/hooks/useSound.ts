@@ -1,5 +1,5 @@
 export function useSound() {
-  const play = (type: 'correct' | 'wrong' | 'streak' | 'achievement' | 'rune-segment' | 'rune-complete') => {
+  const play = (type: 'correct' | 'wrong' | 'streak' | 'achievement' | 'rune-segment' | 'rune-complete' | 'boss-intro' | 'boss-defeat') => {
     try {
       const ctx = new AudioContext();
       const osc = ctx.createOscillator();
@@ -64,6 +64,26 @@ export function useSound() {
             o.start(ctx.currentTime + i * 0.05);
             o.stop(ctx.currentTime + 0.8);
           });
+          break;
+        case 'boss-intro':
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(80, ctx.currentTime);
+          osc.frequency.setValueAtTime(60, ctx.currentTime + 0.3);
+          osc.frequency.setValueAtTime(80, ctx.currentTime + 0.6);
+          gain.gain.setValueAtTime(0.25, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 1.0);
+          osc.start(ctx.currentTime);
+          osc.stop(ctx.currentTime + 1.0);
+          break;
+        case 'boss-defeat':
+          osc.frequency.setValueAtTime(392, ctx.currentTime);
+          osc.frequency.setValueAtTime(523, ctx.currentTime + 0.15);
+          osc.frequency.setValueAtTime(659, ctx.currentTime + 0.3);
+          osc.frequency.setValueAtTime(784, ctx.currentTime + 0.45);
+          gain.gain.setValueAtTime(0.3, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.8);
+          osc.start(ctx.currentTime);
+          osc.stop(ctx.currentTime + 0.8);
           break;
       }
     } catch {

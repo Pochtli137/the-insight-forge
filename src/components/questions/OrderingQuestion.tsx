@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import type { Question } from '../../types/game';
 
 interface OrderingQuestionProps {
@@ -10,6 +10,16 @@ interface OrderingQuestionProps {
 export default function OrderingQuestion({ question, onAnswer, disabled }: OrderingQuestionProps) {
   const items = question.items ?? [];
   const correctOrder = question.correctOrder ?? [];
+
+  // Shuffle display order so items don't appear in the correct sequence
+  const displayOrder = useMemo(() => {
+    const indices = items.map((_, i) => i);
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+    return indices;
+  }, [items]);
 
   const [selectedOrder, setSelectedOrder] = useState<number[]>([]);
   const [submitted, setSubmitted] = useState(false);
@@ -34,12 +44,12 @@ export default function OrderingQuestion({ question, onAnswer, disabled }: Order
 
   return (
     <div>
-      <p className="mb-4 text-center text-sm text-forge-muted">
+      <p className="mb-4 text-center text-base text-forge-muted">
         Tap items in the correct order
       </p>
       <div className="space-y-3">
-        {items.map((item, i) => {
-          const position = selectedOrder.indexOf(i);
+        {displayOrder.map((originalIdx) => {
+          const position = selectedOrder.indexOf(originalIdx);
           const isSelected = position !== -1;
 
           let classes =
@@ -53,7 +63,7 @@ export default function OrderingQuestion({ question, onAnswer, disabled }: Order
             }
           } else {
             // After submission, show correct/incorrect
-            const correctPosition = correctOrder.indexOf(i);
+            const correctPosition = correctOrder.indexOf(originalIdx);
             const userPosition = position;
             if (correctPosition === userPosition) {
               classes += 'border-forge-teal bg-forge-teal/20 text-forge-parchment';
@@ -64,15 +74,15 @@ export default function OrderingQuestion({ question, onAnswer, disabled }: Order
 
           return (
             <button
-              key={i}
-              onClick={() => handleTap(i)}
+              key={originalIdx}
+              onClick={() => handleTap(originalIdx)}
               disabled={disabled}
               className={classes}
             >
               <span className="mr-3 inline-block w-6 text-center font-semibold text-forge-gold">
                 {isSelected ? position + 1 : ''}
               </span>
-              {item}
+              {items[originalIdx]}
             </button>
           );
         })}

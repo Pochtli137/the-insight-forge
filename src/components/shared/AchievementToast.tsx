@@ -28,10 +28,10 @@ export default function AchievementToast() {
     <div className="animate-slide-in-down fixed top-4 left-1/2 z-50 -translate-x-1/2">
       <div className="rounded-lg border-2 border-forge-gold/60 bg-forge-card px-6 py-3 shadow-[0_0_20px_rgba(212,168,67,0.3)]">
         <div className="flex items-center gap-3">
-          <span className="text-2xl">{achievement.emoji}</span>
+          <span className="text-3xl">{achievement.emoji}</span>
           <div>
             <p className="font-serif font-bold text-forge-gold">{achievement.name}</p>
-            <p className="text-xs text-forge-muted">{achievement.description}</p>
+            <p className="text-base text-forge-muted">{achievement.description}</p>
           </div>
         </div>
       </div>

@@ -184,7 +184,7 @@ export default function JoinPage() {
           <div className="h-px w-16 bg-gradient-to-l from-transparent to-forge-gold/40" />
         </div>
 
-        <h1 className="animate-glow mb-2 font-serif text-5xl font-bold text-forge-gold md:text-7xl">
+        <h1 className="animate-glow mb-2 font-serif text-6xl font-bold text-forge-gold md:text-8xl">
           The Insight Forge
         </h1>
 
@@ -195,16 +195,16 @@ export default function JoinPage() {
           <div className="h-px w-24 bg-gradient-to-l from-transparent to-forge-gold/30" />
         </div>
 
-        <p className="mb-3 font-serif text-sm tracking-[0.3em] text-forge-gold-dim uppercase">
+        <p className="mb-3 font-serif text-base tracking-[0.3em] text-forge-gold-dim uppercase">
           Data Analytics Quest
         </p>
-        <p className="mb-14 text-lg text-forge-muted">
+        <p className="mb-14 text-2xl text-forge-muted">
           Five realms. Fifty trials. One forge to rule your insights.
         </p>
 
         <form onSubmit={handleSubmit} className="mx-auto max-w-sm space-y-6">
           <div>
-            <label htmlFor="guild-name" className="mb-2 block font-serif text-sm text-forge-muted">
+            <label htmlFor="guild-name" className="mb-2 block font-serif text-base text-forge-muted">
               Name your guild
             </label>
             <input
@@ -227,7 +227,7 @@ export default function JoinPage() {
         </form>
 
         {/* Bottom flavor text */}
-        <p className="mt-10 font-serif text-xs italic text-forge-muted/50">
+        <p className="mt-10 font-serif text-base italic text-forge-muted/50">
           "The data does not yield its secrets to the faint of heart."
         </p>
       </div>

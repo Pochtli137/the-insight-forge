@@ -51,7 +51,7 @@ export default function RuneDisplay({ realm, compact = false }: RuneDisplayProps
   const allRevealed = segments.length > 0 && segments.every(Boolean);
 
   return (
-    <div className={`font-mono tracking-wider ${compact ? 'text-xs' : 'text-sm'}`}>
+    <div className={`font-mono tracking-wider ${compact ? 'text-base' : 'text-base'}`}>
       <div className="flex flex-wrap justify-center gap-0">
         {textSegments.map((seg, i) => {
           const isRevealed = segments[i] === true;
@@ -71,7 +71,7 @@ export default function RuneDisplay({ realm, compact = false }: RuneDisplayProps
       </div>
       {allRevealed && !compact && (
         <div className="mt-1 text-center">
-          <span className="animate-glow inline-block rounded-full border border-forge-gold/30 px-3 py-0.5 text-xs text-forge-gold">
+          <span className="animate-glow inline-block rounded-full border border-forge-gold/30 px-3 py-0.5 text-base text-forge-gold">
             Rune Complete!
           </span>
         </div>

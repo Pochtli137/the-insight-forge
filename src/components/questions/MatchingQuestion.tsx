@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import type { Question } from '../../types/game';
 
 interface MatchingQuestionProps {
@@ -20,6 +20,16 @@ export default function MatchingQuestion({ question, onAnswer, disabled }: Match
   const left = question.leftColumn ?? [];
   const right = question.rightColumn ?? [];
   const correctPairs = question.correctPairs ?? [];
+
+  // Shuffle right column so answers aren't in the same order as left
+  const rightShuffleMap = useMemo(() => {
+    const indices = right.map((_, i) => i);
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+    return indices;
+  }, [right]);
 
   const [selectedLeft, setSelectedLeft] = useState<number | null>(null);
   const [pairs, setPairs] = useState<[number, number][]>([]);
@@ -73,7 +83,7 @@ export default function MatchingQuestion({ question, onAnswer, disabled }: Match
 
   return (
     <div>
-      <p className="mb-4 text-center text-sm text-forge-muted">
+      <p className="mb-4 text-center text-base text-forge-muted">
         Tap a left item, then its matching right item
       </p>
 
@@ -86,7 +96,7 @@ export default function MatchingQuestion({ question, onAnswer, disabled }: Match
             const isActive = selectedLeft === i;
 
             let classes =
-              'w-full rounded border px-3 py-2 text-left text-sm transition-all duration-200 ';
+              'w-full rounded border px-3 py-2 text-left text-base transition-all duration-200 ';
 
             if (isPaired) {
               classes += pairColors[pairIdx % pairColors.length];
@@ -110,14 +120,14 @@ export default function MatchingQuestion({ question, onAnswer, disabled }: Match
           })}
         </div>
 
-        {/* Right column */}
+        {/* Right column (shuffled) */}
         <div className="space-y-2">
-          {right.map((item, i) => {
-            const pairIdx = getPairIndex('right', i);
+          {rightShuffleMap.map((originalIdx) => {
+            const pairIdx = getPairIndex('right', originalIdx);
             const isPaired = pairIdx !== -1;
 
             let classes =
-              'w-full rounded border px-3 py-2 text-left text-sm transition-all duration-200 ';
+              'w-full rounded border px-3 py-2 text-left text-base transition-all duration-200 ';
 
             if (isPaired) {
               classes += pairColors[pairIdx % pairColors.length];
@@ -128,12 +138,12 @@ export default function MatchingQuestion({ question, onAnswer, disabled }: Match
 
             return (
               <button
-                key={i}
-                onClick={() => handleRightClick(i)}
+                key={originalIdx}
+                onClick={() => handleRightClick(originalIdx)}
                 disabled={disabled}
                 className={classes}
               >
-                {item}
+                {right[originalIdx]}
               </button>
             );
           })}

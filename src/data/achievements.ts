@@ -16,4 +16,5 @@ export const achievements: Achievement[] = [
   { id: 'half-way', name: 'The Deep', description: 'Complete 3 realms', emoji: '🕳' },
   { id: 'perfectionist', name: 'Grand Forger', description: 'Finish with a perfect score', emoji: '👑' },
   { id: 'survivor', name: 'The Resilient', description: 'Get 3 wrong in a row and then get one right', emoji: '🛡' },
+  { id: 'boss-slayer', name: 'Boss Slayer', description: 'Defeat all 5 bosses', emoji: '💀' },
 ];

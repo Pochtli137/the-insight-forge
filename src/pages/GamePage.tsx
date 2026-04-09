@@ -3,6 +3,7 @@ import RealmIntro from '../components/layout/RealmIntro';
 import GameShell from '../components/layout/GameShell';
 import QuestionCard from '../components/questions/QuestionCard';
 import MiniGameRouter from '../components/minigames/MiniGameRouter';
+import BossFight from '../components/bossfight/BossFight';
 import RealmComplete from '../components/layout/RealmComplete';
 import FinishedScreen from '../components/layout/FinishedScreen';
 
@@ -20,6 +21,8 @@ export default function GamePage() {
       );
     case 'mini-game':
       return <MiniGameRouter />;
+    case 'boss-fight':
+      return <BossFight />;
     case 'realm-complete':
       return <RealmComplete />;
     case 'finished':

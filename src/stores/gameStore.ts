@@ -3,6 +3,7 @@ import { persist } from 'zustand/middleware';
 import type { GameState, Question } from '../types/game';
 import { questions } from '../data/questions';
 import { realms } from '../data/realms';
+import { bossFights } from '../data/bossFights';
 
 interface GameActions {
   setGroupName: (name: string) => void;
@@ -21,6 +22,7 @@ interface GameActions {
   dismissAchievement: () => void;
   getTitle: () => string;
   checkRealmAchievements: () => void;
+  completeBossFight: (correct: boolean) => void;
 }
 
 const initialState: GameState = {
@@ -154,12 +156,60 @@ export const useGameStore = create<GameState & GameActions>()(
         const state = get();
         const totalInRealm = questions.filter(q => q.realm === state.currentRealm).length;
         if (state.currentQuestionIndex + 1 >= totalInRealm) {
-          set({ phase: 'realm-complete' });
-          get().checkRealmAchievements();
+          // Route to boss fight if one exists for this realm
+          if (bossFights[state.currentRealm]) {
+            set({ phase: 'boss-fight' });
+          } else {
+            set({ phase: 'realm-complete' });
+            get().checkRealmAchievements();
+          }
         } else {
           set({
             currentQuestionIndex: state.currentQuestionIndex + 1,
             lastAnswerCorrect: null,
+          });
+        }
+      },
+
+      completeBossFight: (correct) => {
+        const state = get();
+        const points = correct ? 200 : 0;
+        set({
+          phase: 'realm-complete',
+          score: state.score + points,
+          realmScores: {
+            ...state.realmScores,
+            [state.currentRealm]: (state.realmScores[state.currentRealm] || 0) + points,
+          },
+        });
+        get().checkRealmAchievements();
+
+        // Check boss-slayer: all boss fights correct
+        if (correct) {
+          const updatedState = get();
+          const bossAnswerKey = `boss-${state.currentRealm}`;
+          const newAnswers = {
+            ...updatedState.answers,
+            [bossAnswerKey]: { correct: true, points, firstTry: true },
+          };
+          set({ answers: newAnswers });
+
+          const allBossesCorrect = Object.keys(bossFights).every(
+            (realmId) => {
+              const key = `boss-${realmId}`;
+              return newAnswers[key]?.correct;
+            }
+          );
+          if (allBossesCorrect) {
+            get().unlockAchievement('boss-slayer');
+          }
+        } else {
+          const bossAnswerKey = `boss-${state.currentRealm}`;
+          set({
+            answers: {
+              ...state.answers,
+              [bossAnswerKey]: { correct: false, points: 0, firstTry: true },
+            },
           });
         }
       },

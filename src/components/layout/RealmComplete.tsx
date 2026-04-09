@@ -20,22 +20,22 @@ export default function RealmComplete() {
       <div className="animate-fade-in-up mx-auto max-w-lg text-center">
         {/* Rune at the top */}
         <div className="mb-6 rounded border border-forge-gold/20 bg-forge-card p-4">
-          <p className="mb-2 text-xs font-semibold tracking-widest text-forge-muted uppercase">Rune of Insight</p>
+          <p className="mb-2 text-base font-semibold tracking-widest text-forge-muted uppercase">Rune of Insight</p>
           <RuneDisplay realm={currentRealm} />
         </div>
 
-        <div className="mb-4 text-5xl">{realm.icon}</div>
-        <h2 className="mb-2 font-serif text-3xl font-bold text-forge-gold">{realm.name}</h2>
-        <p className="mb-8 text-lg text-forge-muted">Realm Complete</p>
+        <div className="mb-4 text-6xl">{realm.icon}</div>
+        <h2 className="mb-2 font-serif text-4xl font-bold text-forge-gold">{realm.name}</h2>
+        <p className="mb-8 text-2xl text-forge-muted">Realm Complete</p>
 
         <div className="mb-8 space-y-3 rounded border border-forge-border bg-forge-card p-6">
           <div className="flex items-center justify-between">
             <span className="text-forge-muted">Realm score</span>
-            <span className="text-xl font-bold text-forge-gold">{realmScore}</span>
+            <span className="text-2xl font-bold text-forge-gold">{realmScore}</span>
           </div>
           <div className="flex items-center justify-between">
             <span className="text-forge-muted">Total score</span>
-            <span className="text-xl font-bold text-forge-parchment">{score}</span>
+            <span className="text-2xl font-bold text-forge-parchment">{score}</span>
           </div>
         </div>
 

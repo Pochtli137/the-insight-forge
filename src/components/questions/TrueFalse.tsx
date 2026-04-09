@@ -22,7 +22,7 @@ export default function TrueFalse({ question, onAnswer, disabled }: TrueFalsePro
     <div className="flex gap-4">
       {options.map((label, i) => {
         let classes =
-          'flex-1 rounded border px-6 py-4 text-center text-lg font-semibold transition-all duration-200 ';
+          'flex-1 rounded border px-6 py-4 text-center text-2xl font-semibold transition-all duration-200 ';
 
         if (selected === null) {
           classes += 'border-forge-border bg-forge-card text-forge-parchment hover:border-forge-gold cursor-pointer';
@@ -31,7 +31,7 @@ export default function TrueFalse({ question, onAnswer, disabled }: TrueFalsePro
         } else if (i === selected) {
           classes += 'border-forge-crimson bg-forge-crimson/20 text-forge-parchment animate-shake';
         } else {
-          classes += 'border-forge-border bg-forge-card text-forge-muted opacity-50';
+          classes += 'border-forge-border bg-forge-card text-forge-parchment/80';
         }
 
         return (

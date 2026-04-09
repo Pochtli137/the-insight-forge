@@ -5,9 +5,10 @@ interface MultipleChoiceProps {
   question: Question;
   onAnswer: (correct: boolean) => void;
   disabled: boolean;
+  hideCorrect?: boolean;
 }
 
-export default function MultipleChoice({ question, onAnswer, disabled }: MultipleChoiceProps) {
+export default function MultipleChoice({ question, onAnswer, disabled, hideCorrect }: MultipleChoiceProps) {
   const [selected, setSelected] = useState<number | null>(null);
 
   const handleClick = (index: number) => {
@@ -26,15 +27,18 @@ export default function MultipleChoice({ question, onAnswer, disabled }: Multipl
         if (selected === null) {
           // Not yet answered
           classes += 'border-forge-border bg-forge-card text-forge-parchment hover:border-forge-gold cursor-pointer';
-        } else if (i === question.correctAnswer) {
-          // This is the correct answer
+        } else if (i === question.correctAnswer && i === selected) {
+          // User picked the correct answer
+          classes += 'border-forge-teal bg-forge-teal/20 text-forge-parchment animate-correct';
+        } else if (i === question.correctAnswer && !hideCorrect) {
+          // Reveal the correct answer (not in boss fights)
           classes += 'border-forge-teal bg-forge-teal/20 text-forge-parchment animate-correct';
         } else if (i === selected) {
-          // User picked this wrong answer
+          // User picked a wrong answer
           classes += 'border-forge-crimson bg-forge-crimson/20 text-forge-parchment animate-shake';
         } else {
           // Other unselected options
-          classes += 'border-forge-border bg-forge-card text-forge-muted opacity-50';
+          classes += 'border-forge-border bg-forge-card text-forge-parchment/80';
         }
 
         return (

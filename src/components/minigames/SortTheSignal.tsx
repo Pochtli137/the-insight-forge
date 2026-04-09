@@ -63,7 +63,7 @@ export default function SortTheSignal({ data, onComplete }: SortTheSignalProps) 
               {shuffledItems
                 .filter((item) => assignments[item.originalIndex] === i)
                 .map((item) => {
-                  let itemClass = 'text-xs rounded px-2 py-1 ';
+                  let itemClass = 'text-base rounded px-2 py-1 ';
                   if (submitted) {
                     itemClass +=
                       item.bucket === i
@@ -91,7 +91,7 @@ export default function SortTheSignal({ data, onComplete }: SortTheSignalProps) 
             <button
               key={item.originalIndex}
               onClick={() => handleItemClick(item.originalIndex)}
-              className={`w-full rounded border px-4 py-2 text-left text-sm transition-all ${
+              className={`w-full rounded border px-4 py-2 text-left text-base transition-all ${
                 selectedItem === item.originalIndex
                   ? 'border-forge-gold bg-forge-gold/10 text-forge-gold'
                   : 'border-forge-border bg-forge-card text-forge-parchment hover:border-forge-gold cursor-pointer'

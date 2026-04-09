@@ -486,25 +486,25 @@ export const questions: Question[] = [
     realm: 2,
     type: 'multiple-choice',
     question:
-      'When breaking a funnel down by traffic source, what should you look for?',
+      'Why is it useful to break down a funnel by traffic source?',
     options: [
-      'The source with the most total users',
-      'The source with the highest revenue',
-      'The source with the worst conversion rate at each step',
-      'The source with the best bounce rate',
+      'To find which source sends the most users',
+      'To compare conversion rates per step between sources and spot where specific audiences drop off',
+      'To calculate total revenue per source',
+      'To determine which source has the lowest bounce rate',
     ],
-    correctAnswer: 2,
+    correctAnswer: 1,
     miniGameType: 'flash',
     miniGameData: {
       explanation:
         'Different traffic sources attract different types of users. By comparing conversion rates per source at each funnel step, you can identify which sources bring low-quality traffic or which steps fail for specific audiences.',
       verifyQuestion:
-        'Source A has 10,000 users with 1% conversion. Source B has 500 users with 15% conversion. Which source has a problem?',
-      verifyOptions: ['Source B', 'Source A'],
+        'Source A has 10,000 users with 1% conversion. Source B has 500 users with 15% conversion. Which source deserves more investigation?',
+      verifyOptions: ['Source B -- fewer users', 'Source A -- high volume but almost nobody converts'],
       verifyAnswer: 1,
     } as FlashData,
     explanation:
-      'Look for the source with the worst conversion rate at each step. This reveals which traffic sources bring users who struggle or drop off.',
+      'Breaking down by source lets you compare conversion rates at each step. This reveals which audiences struggle and where -- so you can fix the funnel for those specific users.',
   },
 
   // ============================================================
@@ -748,36 +748,27 @@ export const questions: Question[] = [
   {
     id: 'r3q10',
     realm: 3,
-    type: 'ordering',
+    type: 'multiple-choice',
     question:
-      'Put the behavioral analysis workflow in the correct order.',
-    items: [
-      'Write hypothesis',
-      'Check clickmap/scrollmap',
-      'Watch recordings',
-      'Look at GA data',
-      'Visit actual page',
+      'What is the most clicked element on Gymgrossisten\'s homepage according to the clickmap?',
+    options: [
+      'The hero banner',
+      'The search field',
+      'The cart icon',
+      'The contact link in the footer',
     ],
-    correctOrder: [3, 4, 1, 2, 0],
-    miniGameType: 'forge',
+    correctAnswer: 1,
+    miniGameType: 'flash',
     miniGameData: {
-      template:
-        'Start with ___ to identify problem pages, then ___ yourself, then check ___, then watch ___, and finally write a ___.',
-      blanks: [
-        'GA data',
-        'visit the page',
-        'clickmap/scrollmap',
-        'recordings',
-        'hypothesis',
-      ],
-      distractors: [
-        'stakeholder interview',
-        'competitor analysis',
-        'wireframe',
-      ],
-    } as ForgeData,
+      explanation:
+        'The search field dominates the clickmap on Gymgrossisten\'s homepage. This tells us that users arrive with a specific product in mind rather than browsing categories. It has major implications for how you prioritize search UX.',
+      verifyQuestion:
+        'If the search field gets the most clicks, what should you prioritize?',
+      verifyOptions: ['Making the hero banner bigger', 'Improving search relevance and autocomplete'],
+      verifyAnswer: 1,
+    } as FlashData,
     explanation:
-      'The workflow is: Look at GA data \u2192 Visit actual page \u2192 Check clickmap/scrollmap \u2192 Watch recordings \u2192 Write hypothesis.',
+      'The search field is by far the most clicked element. Users come to Gymgrossisten knowing what they want, so search quality directly impacts conversion.',
   },
 
   // ============================================================
@@ -1210,91 +1201,75 @@ export const questions: Question[] = [
   {
     id: 'r5q7',
     realm: 5,
-    type: 'ordering',
-    question:
-      'Put the AI-assisted redesign workflow in the correct order.',
-    items: [
-      'Get feedback',
-      'Gather insights',
-      'Set up A/B test',
-      'Create prompt',
-      'Publish/import to Figma',
-    ],
-    correctOrder: [1, 3, 4, 0, 2],
-    miniGameType: 'forge',
-    miniGameData: {
-      template:
-        'First ___ from analytics, then ___ for the AI, then ___ the result, then ___ from stakeholders, and finally ___.',
-      blanks: [
-        'gather insights',
-        'create a prompt',
-        'publish/import to Figma',
-        'get feedback',
-        'set up an A/B test',
-      ],
-      distractors: [
-        'write documentation',
-        'run usability tests',
-        'present to executives',
-      ],
-    } as ForgeData,
-    explanation:
-      'The AI redesign workflow: Gather insights \u2192 Create prompt \u2192 Publish/import to Figma \u2192 Get feedback \u2192 Set up A/B test.',
-  },
-  {
-    id: 'r5q8',
-    realm: 5,
     type: 'multiple-choice',
-    question: 'What is the "post-AI feeling"?',
+    question:
+      'An AI gives you a confident analysis of your GA4 data. What should you do first?',
     options: [
-      'Excitement about AI capabilities',
-      'Boredom from repetitive AI tasks',
-      'Discomfort of AI being faster or better than you',
-      'Confusion about which AI tool to use',
+      'Share it with stakeholders immediately',
+      'Ask the AI to make it more detailed',
+      'Verify the claims against the actual data source',
+      'Ask a different AI for a second opinion',
     ],
     correctAnswer: 2,
     miniGameType: 'flash',
     miniGameData: {
       explanation:
-        'The post-AI feeling is the discomfort that comes when AI produces work faster or seemingly better than you can. It can make designers question their value and skills. The course acknowledges this is a natural reaction.',
+        'AI can hallucinate metrics, invent trends, and misread data while sounding completely confident. The only reliable check is going back to the actual source and verifying each claim yourself.',
       verifyQuestion:
-        'Is the post-AI feeling a sign you should stop using AI?',
-      verifyOptions: [
-        'Yes, it means AI is not for you',
-        'No, it is a natural reaction to adapt through',
-      ],
+        'An AI says your bounce rate improved by 12% last month. You check GA4 and it actually went up. What happened?',
+      verifyOptions: ['GA4 has a bug', 'The AI hallucinated a positive trend'],
       verifyAnswer: 1,
     } as FlashData,
     explanation:
-      'The post-AI feeling is the discomfort you experience when AI seems faster or better than you. It is a natural reaction that many designers experience.',
+      'Always verify AI-generated analysis against the real data. AI can hallucinate numbers, invent trends, and present fabricated data with total confidence.',
+  },
+  {
+    id: 'r5q8',
+    realm: 5,
+    type: 'multiple-choice',
+    question: 'How does it feel when AI produces work faster than you?',
+    opinion: true,
+    options: [
+      'Exciting. More time for the interesting stuff.',
+      'Threatening. What am I here for then?',
+      'Neutral. It is just a tool.',
+      'Mixed. Useful but uncomfortable.',
+    ],
+    correctAnswer: 0,
+    miniGameType: 'flash',
+    miniGameData: {
+      explanation: '',
+      verifyQuestion: '',
+      verifyOptions: [''],
+      verifyAnswer: 0,
+    } as FlashData,
+    explanation:
+      'There is no wrong answer here. Many designers feel a mix of excitement and discomfort when AI produces work faster than them. Acknowledging that feeling is the first step to finding your own role alongside AI.',
   },
   {
     id: 'r5q9',
     realm: 5,
     type: 'multiple-choice',
     question:
-      'What is the advice for overcoming the post-AI feeling?',
+      'What makes a good AI prompt for data analysis?',
     options: [
-      'Stop using AI entirely',
-      'Specialize in tasks AI cannot do',
-      'Go way bigger \u2014 fix the funnel, not just a page',
-      'Learn to code instead',
+      'Keep it short so the AI stays focused',
+      'Give specific context and a clearly scoped question',
+      'Ask for as many insights as possible at once',
+      'Let the AI decide what to analyze',
     ],
-    correctAnswer: 2,
+    correctAnswer: 1,
     miniGameType: 'flash',
     miniGameData: {
       explanation:
-        'Instead of competing with AI on execution speed, think bigger. AI can redesign a page, but understanding the entire funnel, connecting business goals with user needs, and driving strategic change is where human UX professionals add unique value.',
+        'A good prompt gives the AI specific context about what data you have, what question you are trying to answer, and what format you want the output in. Vague prompts produce vague results.',
       verifyQuestion:
-        'If AI can redesign a page in minutes, what should a UX designer focus on?',
-      verifyOptions: [
-        'Redesigning pages faster than AI',
-        'Strategic thinking across the entire user journey',
-      ],
+        'Which prompt is better: "Analyze this data" or "Compare mobile vs desktop conversion rates for March and suggest why they differ"?',
+      verifyOptions: ['The first, it gives the AI more freedom', 'The second, it is specific and scoped'],
       verifyAnswer: 1,
     } as FlashData,
     explanation:
-      'The advice is to go way bigger \u2014 fix the entire funnel, not just a single page. Think strategically where AI cannot replace your judgment.',
+      'Specific context and a clearly scoped question usually produce far better results than vague or overly broad prompts.',
   },
   {
     id: 'r5q10',

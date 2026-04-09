@@ -1,5 +1,6 @@
 export type QuestionType = 'multiple-choice' | 'ordering' | 'matching' | 'true-false';
 export type MiniGameType = 'forge' | 'sort' | 'flash';
+export type BossQuestionType = QuestionType | 'numeric-input' | 'sort-buckets';
 
 export interface ForgeData {
   template: string; // e.g. "We believe ___ is caused by ___"
@@ -39,6 +40,7 @@ export interface Question {
   miniGameData: ForgeData | SortData | FlashData;
   explanation: string;
   flavorText?: string;
+  opinion?: boolean;
 }
 
 export interface Realm {
@@ -51,8 +53,38 @@ export interface Realm {
   rune: string;
 }
 
+export interface BossFightData {
+  realmId: number;
+  bossName: string;
+  bossTaunt: string;
+  bossDefeat: string;
+  taskDescription: string;
+  toolHint?: string;
+  questionType: BossQuestionType;
+  question: string;
+  // ordering
+  items?: string[];
+  correctOrder?: number[];
+  // multiple-choice / true-false
+  options?: string[];
+  correctAnswer?: number;
+  // matching
+  leftColumn?: string[];
+  rightColumn?: string[];
+  correctPairs?: [number, number][];
+  // numeric-input
+  correctNumeric?: number;
+  numericUnit?: string;
+  numericTolerance?: number;
+  // sort-buckets
+  buckets?: string[];
+  sortItems?: { text: string; bucket: number }[];
+  // hint shown on wrong answer
+  hint?: string;
+}
+
 export interface GameState {
-  phase: 'join' | 'realm-intro' | 'playing' | 'mini-game' | 'realm-complete' | 'finished';
+  phase: 'join' | 'realm-intro' | 'playing' | 'mini-game' | 'boss-fight' | 'realm-complete' | 'finished';
   groupName: string;
   currentRealm: number;
   currentQuestionIndex: number;

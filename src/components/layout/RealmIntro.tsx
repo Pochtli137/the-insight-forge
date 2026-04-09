@@ -22,8 +22,8 @@ export default function RealmIntro() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-4">
       <div className="mx-auto max-w-lg text-center">
-        <div className="animate-fade-in-up mb-6 text-6xl">{realm.icon}</div>
-        <h2 className="animate-fade-in-up mb-2 font-serif text-3xl font-bold text-forge-gold">
+        <div className="animate-fade-in-up mb-6 text-7xl">{realm.icon}</div>
+        <h2 className="animate-fade-in-up mb-2 font-serif text-4xl font-bold text-forge-gold">
           {realm.name}
         </h2>
         <p className="animate-fade-in-up mb-10 text-forge-muted">{realm.subtitle}</p>
